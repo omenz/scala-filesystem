@@ -19,10 +19,8 @@ object Command {
   val TOUCH = "touch"
 
   def emptyCommand: Command = (state: State) => state
-  def incompleteCommand(name: String): Command = new Command {
-    override def apply(state: State): State =
-      state.setMessage(s"$name is an incomplete command")
-  }
+  def incompleteCommand(name: String): Command =
+    (state: State) => state.setMessage(s"$name is an incomplete command")
 
   def from(input: String): Command = {
     val tokens: Array[String] = input.split(" ")
