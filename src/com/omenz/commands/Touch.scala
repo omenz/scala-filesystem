@@ -1,6 +1,6 @@
 package com.omenz.commands
 
-import com.omenz.files.DirEntry
+import com.omenz.files.{DirEntry, File}
 import com.omenz.filesystem.State
 
 /**
@@ -8,6 +8,7 @@ import com.omenz.filesystem.State
   */
 class Touch(name: String) extends CreateEntry(name) {
 
-  override def createSpecificEntry(state: State, entryName: String): DirEntry = ???
-  
+  override def createSpecificEntry(state: State, entryName: String): DirEntry =
+    File.empty(state.wd.path, entryName)
+
 }
