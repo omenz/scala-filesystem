@@ -7,8 +7,12 @@ class Directory(override val parentPath: String,
                 override val name: String,
                 val contents: List[DirEntry])
   extends DirEntry(parentPath, name) {
+
   def hasEntry(name: String): Boolean = ???
 
+  def getAllFoldersInPath: List[String] = ???
+
+  def findDescendant(path: List[String]): Directory = ???
 }
 
 object Directory {
