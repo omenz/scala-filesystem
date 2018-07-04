@@ -28,11 +28,14 @@ class Directory(override val parentPath: String,
   def hasEntry(name: String): Boolean =
     findEntry(name) != null
 
+  override def getType: String = "Directory"
+
   override def asDirectory: Directory = this
 
   def getAllFoldersInPath: List[String] =
     path.substring(1)
       .split(Directory.SEPARATOR)
+      .filter(s => !s.isEmpty)
       .toList
 
   def findDescendant(path: List[String]): Directory =
