@@ -1,5 +1,7 @@
 package com.omenz.files
 
+import com.omenz.filesystem.FileSystemException
+
 import scala.annotation.tailrec
 
 /**
@@ -31,6 +33,8 @@ class Directory(override val parentPath: String,
   override def getType: String = "Directory"
 
   override def asDirectory: Directory = this
+
+  override def asFile: File = throw new FileSystemException("A directory cannot be converted to a file!")
 
   def getAllFoldersInPath: List[String] =
     path.substring(1)
