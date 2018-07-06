@@ -46,11 +46,11 @@ class Echo(args: List[String]) extends Command {
     }
   }
 
-  def doEcho(state: State, content: String, filename: String, append: Boolean): State = {
+  def doEcho(state: State, contents: String, filename: String, append: Boolean): State = {
     if (filename.contains(Directory.SEPARATOR))
       state.setMessage("Filename must not contain separator")
     else {
-      val newRoot: Directory = ???
+      val newRoot: Directory = getRootAfterEcho(state.root, state.wd.getAllFoldersInPath :+ filename, contents, append)
       if (newRoot == state.root)
         state.setMessage(s"$filename: no such file")
       else
